@@ -17,15 +17,11 @@ def build_heap(data, n):
         return False
     
     while(True):
-        print("Current element: " + str(i))
         sortedChild = False
         isProper = False
         leftChild = 2*i+1
-        print("LeftChild: " + str(leftChild))
         rightChild = 2*i+2
-        print("RightChild: " + str(rightChild))
         parent = int((i+1)/2)-1
-        print("Parent: " + str(parent))
         if (rightChild <= n-1):
             sortedChild = swap(rightChild, i)
             if sortedChild == True:
