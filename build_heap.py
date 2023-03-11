@@ -88,7 +88,6 @@ def main():
     # swaps = build_heap(data)
 
     # TODO: output how many swaps were made, 
-    print(int(len(swaps)/2))
     # this number should be less than 4n (less than 4*len(data))
 
     # output all swaps
