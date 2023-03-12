@@ -1,45 +1,30 @@
 # python3
 
-def build_heap(data, n):
+import math
+
+def build_heap(data):
     swaps = []
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
-    i = n - 1
-    i = int((i+1)/2)-1
-
+            
     def swap(child,parent):
         if (data[parent] >= data[child]):
             temp = data[child]
             data[child] = data[parent]
             data[parent] = temp
             swaps.append((parent,child))
-            return True
-        return False
-    
-    while(True):
-        sortedChild = False
-        isProper = False
-        leftChild = 2*i+1
-        rightChild = 2*i+2
-        parent = int((i+1)/2)-1
-        if (rightChild <= n-1):
-            sortedChild = swap(rightChild, i)
-            if sortedChild == True:
-                i = 2*i+2
-                continue
-        if (leftChild <= n-1):
-            sortedChild = swap(leftChild, i)
-            if sortedChild == True:
-                i = 2*i+1
-                continue
-        if (parent >= 0):
-            isProper = swap(i, parent)
-        if isProper == False and sortedChild == False:
-            if parent <= -1:
-                break
-            else:
-                i = parent 
-            
+
+    for i in reversed(data):
+        n = data.index(i)
+
+        parent = math.floor((n-1)/2)
+        
+        while n != 0:
+            if data[n] < data[parent]:
+                swap(n,parent)
+
+            n = int(math.floor((n-1)/2)) 
+
     return swaps
 
 
@@ -50,11 +35,12 @@ def main():
     # first two tests are from keyboard, third test is from a file
     inputType = input()
 
+    # input from keyboard
     if "I" in inputType:
         n = int(input())
         data = list(map(int, input().split()))
         assert len(data) == n
-        swaps = build_heap(data, n)
+        swaps = build_heap(data)
     # input from a file
     elif "F" in inputType:
         filename = input()
