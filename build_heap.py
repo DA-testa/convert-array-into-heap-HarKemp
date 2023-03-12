@@ -4,9 +4,7 @@ import math
 
 def build_heap(data):
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
-            
+
     def swap(child,parent):
         if (data[parent] >= data[child]):
             temp = data[child]
@@ -14,16 +12,15 @@ def build_heap(data):
             data[parent] = temp
             swaps.append((parent,child))
 
-    for i in reversed(data):
+    rdata = reversed(data)
+    for i in rdata:
         n = data.index(i)
-
-        parent = math.floor((n-1)/2)
         
         while n != 0:
-            if data[n] < data[parent]:
-                swap(n,parent)
+            parent = math.floor((n-1)/2)
+            swap(n,parent)
 
-            n = int(math.floor((n-1)/2)) 
+            n = parent
 
     return swaps
 
